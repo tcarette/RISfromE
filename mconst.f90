@@ -3,8 +3,8 @@ module mconst
   !  Nuclear parameters
   integer niso
   real(kind(1d0)) Z
-  real(kind(1d0)), allocatable :: A(:),APARM(:),CPARM(:),EMN(:),EMNAMU(:),RRMS(:)
-  integer, allocatable :: NPARM(:)
+  real(kind(1d0)), allocatable :: A(:,:),APARM(:,:),CPARM(:,:),EMN(:,:),EMNAMU(:,:),RRMS(:,:)
+  integer, allocatable :: NPARM(:,:)
   !*
   !*   Physical constants from http://physics.nist.gov (2010)
   !*
