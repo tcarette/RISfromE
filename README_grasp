@@ -1,0 +1,102 @@
+
+         General Relativistic Atomic Structure Package -- grasp2K
+
+http://cpc.cs.qub.ac.uk/summaries/ADZL_v1_0.html
+
+	                COPYRIGHT  2003
+
+This package is an extension and modification of GRASP92 by
+Farid Parpia, Charlotte Froese Fischer, and Ian Grant.
+Computer Physics Communication, 94, 249-271 (1996)
+
+Modifications include:
+1. Elimination of preprocessing and introduction of PARAMETERS
+2. Use of a block structure, correcting eigenvalue error in  GRASP92
+3. Development of MPI codes
+4. Use of biorthogonal transformations for transition calculations
+
+Development performed by:
+   Charlotte Froese Fischer (email: Charlotte.F.Fischer@Vanderbilt.edu)
+   Per Jonsson              (email: per.jonsson@ts.mah.se)
+   Xinghong He
+
+Other Collaborators:
+   Jacek Bieron
+   David Ellis
+   Gediminas Gaigalas
+   Ian Grant
+   Farid Parpia
+   Georgio Tachiev
+   Anders Ynnerman
+   Yu Zou                 
+
+              October, 2003
+              -----------------
+
+
+This work was supported by the Chemical Sciences, Geosciences and
+Biosciences Division, Office of Basic Energy Sciences, Office of 
+Science, U.S.  Department of Energy.
+
+
+
+#                       INSTALLATION
+
+# 1. The package requires several environmental variables 
+# to be correctly initialized as described below.  One such 
+# variable is the ${GRASP} directory for compiled code.
+# 
+# 2. To compile go to src and type "make"
+# 3. the binaries will be compiled in ${GRASP}/bin
+# 4. The libraries will be compiled in ${GRASP}/lib
+
+# Examples of the various options that have been used on  different
+# architectures are given in the separate file, READ_SETENV
+
+# To compile the mpi versions of the code, the appl/v2/Makefile
+# needs to be modified to select also the mpi applications.
+
+################# Location of GRASP binaries ##################
+#
+setenv GRASP ${HOME} # where ${HOME} is the name of a directory
+                    # default location for executables: ${HOME}/bin
+                    # default location for libraries: ${HOME}/lib
+set path = ( ${GRASP}/bin $path )  # place the executables on the search path
+
+
+################# System dependent variables ######################
+# If using the PGI compiler, for example, PGI needs to be set :
+# root directory of fortran compiler
+setenv PGI /usr/pgi # root of the PGI compiler
+
+#  When Lapack and Blas libraries are to be used from PGI Fortran 
+# PGI environment requires the definitions:
+
+setenv LAPACK_DIR ${PGI}/linux86/5.0/lib   # Location of Lapack library
+setenv LAPACK_LIB "-llapack -lblas"        # Libraries to be searched
+
+# When included routines are to be used define these variables as:
+setenv LAPACK_DIR ${GRASP}/lib             # Location of needed routines
+setenv LAPACK_LIB "-llapackd -llapacku -lblas" # Libraries to be searched
+
+################# Fortran Compiler ###################################
+#
+setenv FC "pgf90"                          # Fortran compiler 
+setenv FC_MPI "mpif90"                     # MPI compiler 
+setenv FC_FLAGS "-O2 -byteswapio"          # Serial code compiler flags 
+setenv FC_MPIFLAGS "-O2 -byteswapio"       # Parallel code compiler flags 
+setenv FC_LD "-Bstatic"                    # Serial linker flags
+setenv FC_MPILD "-Bstatic"                 # Parallel linker flags 
+setenv FC_MALLOC LINUX                     # memory allocation routine
+
+
+################# C++ Compiler ########################################
+#
+setenv CPP "g++"                           # C++ compiler 
+setenv CPP_FLAGS "-O3"			   # C++ compiler flags
+setenv CPP_LD "-static"                    # C++ linker
+
+
+################# Define grasp2K libraries #############################
+#
+setenv GRASPLIBS "-l92 -lnjgraf -ldvdson"
