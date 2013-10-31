@@ -1,0 +1,7 @@
+
+export SRCDIR=src
+export FC=gfortran
+
+cd $SRCDIR
+make
+

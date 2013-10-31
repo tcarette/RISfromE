@@ -1,6 +1,4 @@
 
-FC=gfortran
-
 SRCMOD = mconst.f90
 SRCF90 = ris_ana.f90
 SRCF   = estrms.f skfun.f
@@ -16,7 +14,7 @@ FLAGS_LINK=
 FLAGS_COM = -c
 FLAGS_F90 =
 
-SN=ris_ana
+SN=../bin/ris_ana
 
 #making
 install: $(SN)
